@@ -7,7 +7,8 @@ LABEL MAINTAINER="_AMD_ (me@amd-nick.me)"
 
 RUN apt-get update \
 	&& apt-get -y upgrade \
-	&& apt-get -y --no-install-recommends install wget lib32gcc1 lib32tinfo5 lib32stdc++6 ca-certificates
+	&& apt-get -y --no-install-recommends install wget lib32gcc1 lib32tinfo5 lib32stdc++6 ca-certificates \
+  && apt-get install git
 #                                                 for steamcmd               for gmod     for steamcmd under !root
 
 
@@ -50,7 +51,6 @@ RUN ./steamcmd.sh \
 
 RUN echo '"mountcfg" {"cstrike" "/gmodserv/content/css/cstrike"}' > /gmodserv/garrysmod/cfg/mount.cfg
 
-RUN apt-get install -y git
 RUN git clone https://github.com/NoteDevil/Test-utility.git
 
 # Run server
