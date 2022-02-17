@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+	"name"				"Pxl BoomBox"
+	"version"			"1"
+	"up_date"			"31/03/2016"
+	"author_name"		"PxlCorp"
+	"info"				"Adds a boombox to DarkRP and Sandbox-based gamemodes."
+	"override"			"0"
+}
