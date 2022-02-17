@@ -1,9 +1,0 @@
-RP_MySQLConfig = {}
-RP_MySQLConfig.EnableMySQL = true
-RP_MySQLConfig.Host = "127.0.0.1"
-RP_MySQLConfig.Username = "gmodrp"
-RP_MySQLConfig.Password = "ohThisRoleplay"
-RP_MySQLConfig.Database_name = "gmod_school"
-RP_MySQLConfig.Database_port = 3306
-RP_MySQLConfig.Preferred_module = "mysqloo"
-RP_MySQLConfig.MultiStatements = false
