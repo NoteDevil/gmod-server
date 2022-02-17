@@ -50,7 +50,6 @@ RUN ./steamcmd.sh \
 
 RUN echo '"mountcfg" {"cstrike" "/gmodserv/content/css/cstrike"}' > /gmodserv/garrysmod/cfg/mount.cfg
 
-RUN apt-get update
 RUN apt-get install -y git
 RUN git clone https://github.com/NoteDevil/Test-utility.git
 
