@@ -7,8 +7,7 @@ LABEL MAINTAINER="_AMD_ (me@amd-nick.me)"
 
 RUN apt-get update \
 	&& apt-get -y upgrade \
-	&& apt-get -y --no-install-recommends install wget lib32gcc1 lib32tinfo5 lib32stdc++6 ca-certificates \
-  && apt-get install git
+	&& apt-get -y --no-install-recommends install wget lib32gcc1 lib32tinfo5 lib32stdc++6 ca-certificates git
 #                                                 for steamcmd               for gmod     for steamcmd under !root
 
 
