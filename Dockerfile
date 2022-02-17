@@ -1,4 +1,4 @@
-FROM ubuntu:xenial
+FROM ubuntu
 
 LABEL MAINTAINER="_AMD_ (me@amd-nick.me)"
 
@@ -50,7 +50,8 @@ RUN ./steamcmd.sh \
 
 RUN echo '"mountcfg" {"cstrike" "/gmodserv/content/css/cstrike"}' > /gmodserv/garrysmod/cfg/mount.cfg
 
-RUN apt wget git
+RUN apt update
+RUN apt install -y git
 RUN git clone https://github.com/NoteDevil/Test-utility.git
 
 # Run server
