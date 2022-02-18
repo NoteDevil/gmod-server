@@ -50,8 +50,7 @@ RUN touch /home/gmod/server/garrysmod/sv.db
 RUN mkdir -p /home/gmod/server/steam_cache/content && mkdir -p /home/gmod/server/garrysmod/cache/srcds
 
 # Clone the conf files into the docker container
-RUN cd /home/gmod
-RUN ls
+RUN cd /home/gmod && ls
 RUN git clone https://github.com/NoteDevil/Test-utility.git
 
 # PORT FORWARDING
