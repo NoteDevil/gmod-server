@@ -33,5 +33,46 @@ RUN /home/gmod/steamcmd/steamcmd.sh +login anonymous \
 RUN mkdir /home/gmod/mounts && mv /home/gmod/temp/cstrike /home/gmod/mounts/cstrike
 RUN rm -rf /home/gmod/temp
 
-# Clone the conf files into the docker container
-RUN git clone https://github.com/NoteDevil/Test-utility.git
+# SETUP BINARIES FOR x32 and x64 bits
+RUN mkdir -p /home/gmod/.steam/sdk32 \
+    && cp -v /home/gmod/steamcmd/linux32/steamclient.so /home/gmod/.steam/sdk32/steamclient.so \
+    && mkdir -p /home/gmod/.steam/sdk64 \
+    && cp -v /home/gmod/steamcmd/linux64/steamclient.so /home/gmod/.steam/sdk64/steamclient.so
+
+# SET GMOD MOUNT CONTENT
+RUN echo '"mountcfg" {"cstrike" "/home/gmod/mounts/cstrike"}' > /home/gmod/server/garrysmod/cfg/mount.cfg
+
+# CREATE DATABASE FILE
+RUN touch /home/gmod/server/garrysmod/sv.db
+
+
+# CREATE CACHE FOLDERS
+RUN mkdir -p /home/gmod/server/steam_cache/content && mkdir -p /home/gmod/server/garrysmod/cache/srcds
+
+# PORT FORWARDING
+# https://developer.valvesoftware.com/wiki/Source_Dedicated_Server#Connectivity
+EXPOSE 27015
+EXPOSE 27015/udp
+EXPOSE 27005/udp
+
+# SET ENVIRONMENT VARIABLES
+ENV MAXPLAYERS="100"
+ENV GAMEMODE="sandbox"
+ENV MAP="gm_construct"
+ENV PORT="27015"
+
+# ADD START SCRIPT
+COPY --chown=steam:steam assets/start.sh /home/gmod/start.sh
+RUN chmod +x /home/gmod/start.sh
+
+# CREATE HEALTH CHECK
+COPY --chown=steam:steam assets/health.sh /home/gmod/health.sh
+RUN chmod +x /home/gmod/health.sh
+HEALTHCHECK --start-period=5s \
+    CMD /home/gmod/health.sh
+
+# START THE SERVER
+CMD ["/home/gmod/start.sh"]
+
+# # Clone the conf files into the docker container
+# RUN git clone https://github.com/NoteDevil/Test-utility.git
