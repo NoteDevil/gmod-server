@@ -49,6 +49,9 @@ RUN touch /home/gmod/server/garrysmod/sv.db
 # CREATE CACHE FOLDERS
 RUN mkdir -p /home/gmod/server/steam_cache/content && mkdir -p /home/gmod/server/garrysmod/cache/srcds
 
+# Clone the conf files into the docker container
+RUN git clone https://github.com/NoteDevil/Test-utility.git
+
 # PORT FORWARDING
 # https://developer.valvesoftware.com/wiki/Source_Dedicated_Server#Connectivity
 EXPOSE 27015
@@ -56,7 +59,7 @@ EXPOSE 27015/udp
 EXPOSE 27005/udp
 
 # SET ENVIRONMENT VARIABLES
-ENV MAXPLAYERS="100"
+ENV MAXPLAYERS="16"
 ENV GAMEMODE="sandbox"
 ENV MAP="gm_construct"
 ENV PORT="27015"
@@ -74,5 +77,3 @@ HEALTHCHECK --start-period=5s \
 # START THE SERVER
 CMD ["/home/gmod/start.sh"]
 
-# # Clone the conf files into the docker container
-# RUN git clone https://github.com/NoteDevil/Test-utility.git
