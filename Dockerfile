@@ -25,5 +25,13 @@ RUN wget -P /home/gmod/steamcmd/ https://steamcdn-a.akamaihd.net/client/installe
 COPY assets/update.txt /home/gmod/update.txt
 RUN /home/gmod/steamcmd/steamcmd.sh +runscript /home/gmod/update.txt +quit
 
+# SETUP CSS CONTENT
+RUN /home/gmod/steamcmd/steamcmd.sh +login anonymous \
+    +force_install_dir /home/gmod/temp \
+    +app_update 232330 validate \
+    +quit
+RUN mkdir /home/gmod/mounts && mv /home/gmod/temp/cstrike /home/gmod/mounts/cstrike
+RUN rm -rf /home/gmod/temp
+
 # Clone the conf files into the docker container
 RUN git clone https://github.com/NoteDevil/Test-utility.git
