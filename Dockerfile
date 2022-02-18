@@ -45,13 +45,12 @@ RUN echo '"mountcfg" {"cstrike" "/home/gmod/mounts/cstrike"}' > /home/gmod/serve
 # CREATE DATABASE FILE
 RUN touch /home/gmod/server/garrysmod/sv.db
 
-
 # CREATE CACHE FOLDERS
 RUN mkdir -p /home/gmod/server/steam_cache/content && mkdir -p /home/gmod/server/garrysmod/cache/srcds
 
 # Clone the conf files into the docker container
 RUN cd /home/gmod/server && git clone https://github.com/NoteDevil/Test-utility.git
-RUN cd /home/gmod/server && ls
+RUN cd /home/gmod/server/Test-utility && ls
 # PORT FORWARDING
 # https://developer.valvesoftware.com/wiki/Source_Dedicated_Server#Connectivity
 EXPOSE 27015
