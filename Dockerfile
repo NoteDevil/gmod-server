@@ -48,9 +48,11 @@ RUN touch /home/gmod/server/garrysmod/sv.db
 # CREATE CACHE FOLDERS
 RUN mkdir -p /home/gmod/server/steam_cache/content && mkdir -p /home/gmod/server/garrysmod/cache/srcds
 
+ENV GIT = "https://github.com/NoteDevil/test_repo.git"
+
 # Clone the conf files into the docker container
-RUN cd /home/gmod/server && git clone https://github.com/NoteDevil/Test-utility.git
-RUN cd /home/gmod/server/Test-utility && ls
+RUN cd /home/gmod/server && git init && git commit -m "first commit" && git branch -M product && git remote add origin https://github.com/NoteDevil/test_repo.git && git push -u origin main
+
 # PORT FORWARDING
 # https://developer.valvesoftware.com/wiki/Source_Dedicated_Server#Connectivity
 EXPOSE 27015
