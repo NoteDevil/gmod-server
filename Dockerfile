@@ -11,12 +11,6 @@ RUN apt-get -y --no-install-recommends --no-install-suggests install \
 RUN apt-get clean
 RUN rm -rf /tmp/* /var/lib/apt/lists/*
 
-ADD repo-key /
-RUN \
-  chmod 600 /repo-key && \  
-  echo "IdentityFile /repo-key" >> /etc/ssh/ssh_config && \  
-  echo -e "StrictHostKeyChecking no" >> /etc/ssh/ssh_config && 
-
 # SET STEAM USER
 RUN useradd -d /home/gmod -m steam
 USER steam
@@ -54,12 +48,12 @@ RUN touch /home/gmod/server/garrysmod/sv.db
 # CREATE CACHE FOLDERS
 RUN mkdir -p /home/gmod/server/steam_cache/content && mkdir -p /home/gmod/server/garrysmod/cache/srcds
 
-ENV GIT = "https://github.com/NoteDevil/test_repo.git"
+# ENV GIT = "https://github.com/NoteDevil/test_repo.git"
 
-RUN git config --global user.email "notedevil.dev@gmail.com"
+# RUN git config --global user.email "notedevil.dev@gmail.com"
 
-# Clone the conf files into the docker container
-RUN cd /home/gmod/server && git init && git commit -m "first commit" && git branch -M product && git remote add origin https://github.com/NoteDevil/test_repo.git && git push -u origin main
+# # Clone the conf files into the docker container
+# RUN cd /home/gmod/server && git init && git commit -m "first commit" && git branch -M product && git remote add origin https://github.com/NoteDevil/test_repo.git && git push -u origin main
 
 # PORT FORWARDING
 # https://developer.valvesoftware.com/wiki/Source_Dedicated_Server#Connectivity
