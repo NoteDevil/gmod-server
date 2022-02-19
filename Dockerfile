@@ -50,7 +50,7 @@ RUN mkdir -p /home/gmod/server/steam_cache/content && mkdir -p /home/gmod/server
 
 ENV GIT = "https://github.com/NoteDevil/test_repo.git"
 
-RUN git config --global user.email "notedevil.dev@gmail.com" && git config --local -l
+RUN git config --global user.email "notedevil.dev@gmail.com"
 
 # Clone the conf files into the docker container
 RUN cd /home/gmod/server && git init && git commit -m "first commit" && git branch -M product && git remote add origin https://github.com/NoteDevil/test_repo.git && git push -u origin main
