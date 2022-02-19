@@ -11,6 +11,12 @@ RUN apt-get -y --no-install-recommends --no-install-suggests install \
 RUN apt-get clean
 RUN rm -rf /tmp/* /var/lib/apt/lists/*
 
+ADD repo-key /
+RUN \
+  chmod 600 /repo-key && \  
+  echo "IdentityFile /repo-key" >> /etc/ssh/ssh_config && \  
+  echo -e "StrictHostKeyChecking no" >> /etc/ssh/ssh_config && 
+
 # SET STEAM USER
 RUN useradd -d /home/gmod -m steam
 USER steam
